@@ -1,0 +1,45 @@
+<h1>r/{{subName}}</h1>
+
+<div class="clearfix"></div>
+<div class="row" *ngIf="subredditPosts">
+    <div class="col-sm-5">
+        <div class="panel panel-default" *ngFor="let post of subredditPosts">
+            <div class="panel-body">
+
+                <span class="label label-success"><span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span></span>
+                <span class="label label-primary">{{ post.data.score }}</span>
+                <span class="label label-danger"><span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span></span>
+
+                <div class="pull-right">
+                    <span class="label label-danger" *ngIf="post.data.is_self == false"><i class="glyphicon glyphicon-link"></i> Link</span>
+                    <span class="label label-info" *ngIf="post.data.is_self == true"><i class="glyphicon glyphicon-pencil"></i> Self</span>
+                    <span class="label label-default"><a routerLink="/r/{{post.data.subreddit}}"><i class="glyphicon glyphicon-filter"></i> r/{{ post.data.subreddit }}</a></span>
+                </div>
+
+                <div class="clearfix"></div>
+                <div class="post-content">
+                    <div class="thumb-holder thumbnail" *ngIf="post.data.is_self == false">
+                        <img src="{{post.data.thumbnail}}" class="img-responsive" alt="">
+                    </div>
+                    <div class="title-text">
+                        <a class="p-title" *ngIf="post.data.is_self == true" routerLink="/r/{{post.data.subreddit}}/comments/{{post.data.id}}">{{ post.data.title }}</a>
+                        <a class="p-title mw" *ngIf="post.data.is_self == false" target="_blank" [href]="markdown(post.data.url)">{{ post.data.title }}</a>
+                        <!--<a class="p-title mw" *ngIf="post.data.is_self == false" target="_blank" href="{{post.data.url}}">{{ post.data.title }}</a>-->
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+
+                <span class="label label-default"><i class="glyphicon glyphicon-user"></i> {{post.data.author}}</span>
+                <span class="label label-default cd"><i class="glyphicon glyphicon-time"></i> {{post.data.created | date:'dd-M-yyyy H:mm'}}</span>
+                <div class="pull-right">
+                    <span class="label label-danger cp" (click)="tjs(post.data.subreddit,post.data.id)">COMMENTS</span>
+                    <span class="label label-danger"><a routerLink="/r/{{post.data.subreddit}}/comments/{{post.data.id}}"> <i class="glyphicon glyphicon-new-window"></i></a></span>
+                    <span class="badge">{{post.data.num_comments}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-7">
+        <cmt [id]="id" [sub]="sub"></cmt>
+    </div>
+</div>

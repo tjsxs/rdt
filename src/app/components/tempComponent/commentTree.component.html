@@ -1,0 +1,10 @@
+<ul *ngFor="let current of comments">
+    <li *ngIf="current.kind != 'more'">
+        {{current.data.body}}
+        <commentTree *ngIf="current.data.replies != '' && current.data.replies != undefined" 
+                [comments]="current.data.replies.data.children"></commentTree>
+    </li>
+    <li *ngIf="current.kind== 'more'">
+        <a href="#">more</a>
+    </li>
+</ul>

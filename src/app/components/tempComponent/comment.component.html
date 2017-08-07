@@ -1,0 +1,6 @@
+<div class="well well-lg" *ngIf="post">
+    {{post.title}}
+</div>
+<div *ngIf="comments">
+    <commentTree [comments]="comments"></commentTree>
+</div>

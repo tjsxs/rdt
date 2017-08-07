@@ -1,0 +1,14 @@
+<div class="text-center" [ngClass]="{hidden: isLoading}">
+    <img alt="" src="/assets/comment.gif">
+</div>
+
+
+
+<div class="panel panel-default" [ngClass]="{hidden: !isLoading}">
+    <div class="panel-heading" *ngIf="post">
+        {{post.title}}
+    </div>
+    <div class="panel-body" *ngIf="comments">
+        <commentTree [cdata]="comments"></commentTree>
+    </div>
+</div>

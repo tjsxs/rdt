@@ -1,0 +1,44 @@
+<!--<ul *ngFor="let current of cdata">
+    <li *ngIf="current.kind != 'more'">
+        <div [innerHTML]="markdown(current.data.body_html)"></div>
+        <commentTree *ngIf="current.data.replies != '' && current.data.replies != undefined" 
+                [cdata]="current.data.replies.data.children"></commentTree>
+    </li>
+    <li *ngIf="current.kind== 'more'">
+        <a href="#">more</a>
+    </li>
+</ul>
+-->
+
+
+
+<div *ngFor="let current of cdata">
+   
+    <div class="single" *ngIf="current.kind != 'more'" [innerHTML]="markdown(current.data.body_html)">
+    </div>
+
+
+    <div class="replies" *ngIf="current.kind != 'more' && current.data.replies != '' && current.data.replies != undefined">
+        <commentTree [cdata]="current.data.replies.data.children"></commentTree>
+    </div>
+
+</div>
+
+
+
+<!--
+        <li *ngIf="current.kind != 'more' && current.data.replies == ''" [innerHTML]="markdown(current.data.body_html)"></li>
+ 
+    <ul *ngIf="current.kind != 'more' && current.data.replies != '' && current.data.replies != undefined">
+
+        <li [innerHTML]="markdown(current.data.body_html)"></li>
+        
+            <commentTree [cdata]="current.data.replies.data.children"></commentTree>
+        
+    </ul>
+    <ul>
+        <li *ngIf="current.kind== 'more'">
+            <a href="#"><span class="label label-default">more..</span></a>
+        </li>
+    </ul>-->
+<!--</li>-->
